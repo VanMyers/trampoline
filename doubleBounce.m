@@ -8,7 +8,7 @@ cd = 1.2;                   % coefficient of drag (unitless)
 rho = 1.2;                  % density of air at STP (kg/m^3)
 area = .07;                 % area of standing human (m^2) *imprecise*
 mass = 75;                  % weight of person (kg)
-t0 = 0.1;                   % double bounce deformation (m)
+t0 = -.15;                  % double bounce deformation (m)
 
 % Physical Constants
 g = 9.8;                    % acceleration of gravity (m/s^2)
@@ -17,7 +17,7 @@ g = 9.8;                    % acceleration of gravity (m/s^2)
 init = [2, 0];     % [y, v] 
 
 % Time
-duration = 50;              % simulation length (s)
+duration = 40;              % simulation length (s)
 framerate = 30;             % animation framerate (s^-1)
 timestep = 1/(framerate*10);
 tspan = [0:timestep:duration];
@@ -26,7 +26,7 @@ tspan = [0:timestep:duration];
 options = odeset('Events', @event_func);
 
 % Calculate the people's positions
-[T, M, te, ye, ie] = ode45(@rate_func, tspan, init, options);
+[T, M, te, ye, ie] = ode23(@rate_func, tspan, init, options);
 
     function res = rate_func(~, X)
         % extract state
