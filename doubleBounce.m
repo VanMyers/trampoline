@@ -10,7 +10,7 @@ area = .07;                 % area of standing human (m^2) *imprecise*
 g = 9.8;                    % acceleration of gravity (m/s^2)
 
 % Initial conditions
-init = [0, 0, 0, 0, 0];     % [y(bee), vbee, yber, vber, xspring] 
+init = [0, 0, 0];     % [y, v, x] 
 
 % Time
 
