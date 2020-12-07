@@ -11,7 +11,7 @@ mass = 75;                  % weight of person (kg)
 g = 9.8;                    % acceleration of gravity (m/s^2)
 
 % Initial conditions
-init = [2, 0, 0];     % [y, v, x] 
+init = [2, 0, 0, 0];     % [y, v, x, vx] 
 
 % Time
 duration = 2;              % simulation length (s)
@@ -30,6 +30,7 @@ options = odeset('Events', @event_func);
         y = X(1);
         v = X(2);
         x = X(3);
+        vx = X(4);
         
         fDrag = drag(v);
         fSpring = spring(x);
@@ -39,19 +40,18 @@ options = odeset('Events', @event_func);
         if y-x <= .00001
             fOnSpring = fDown;
             s = fSpring;
-            vSpring = (y-x)/timestep;
         else
             fOnSpring = 0;
             s = 0;
-            vSpring = (0-x)/timestep;
         end
-        fSpring - fOnSpring;
+        ax = (fSpring + fOnSpring) / mass;
+        vx = 0;
         a = (fDown + s) / mass;
-        res = [v; a; vSpring];
+        res = [v; a; vx; ax];
     end
 
     function res = spring(x)
-        res = -k * x;
+        res = k * x;
     end
     
     function res = drag(v)
