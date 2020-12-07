@@ -1,5 +1,7 @@
 function [T, M, te, ye] = doubleBounce
 
+% [T,M,te,ye] = doubleBounce(); clf; hold on; plot(T,M(:,1)); plot(te, ye(:,1));
+
 % Model Parameters
 k = 50000;                  % spring constant (N/m) *PLACEHOLDER*
 cd = 1.2;                   % coefficient of drag (unitless)
