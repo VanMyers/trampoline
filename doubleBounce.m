@@ -9,6 +9,7 @@ rho = 1.2;                  % density of air at STP (kg/m^3)
 area = .07;                 % area of standing human (m^2) *imprecise*
 mass = 75;                  % weight of person (kg)
 t0 = -.15;                  % double bounce deformation (m)
+eff = .87;                  % effectiveness of trampoline (unitless)
 
 % Physical Constants
 g = 9.8;                    % acceleration of gravity (m/s^2)
@@ -17,7 +18,7 @@ g = 9.8;                    % acceleration of gravity (m/s^2)
 init = [2, 0];     % [y, v] 
 
 % Time
-duration = 40;              % simulation length (s)
+duration = 120;              % simulation length (s)
 framerate = 30;             % animation framerate (s^-1)
 timestep = 1/(framerate*10);
 tspan = [0:timestep:duration];
@@ -35,7 +36,9 @@ options = odeset('Events', @event_func);
         
         fDrag = drag(v);
         
-        if (y < t0) | ((y < 0) & (v > 0))
+        if ((y < 0) & (v > 0))
+            fSpring = spring(y) * eff;
+        elseif (y < t0)
             fSpring = spring(y);
         else
             fSpring = 0;
