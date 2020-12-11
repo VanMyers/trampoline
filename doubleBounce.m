@@ -8,7 +8,7 @@ cd = 1.2;                   % coefficient of drag (unitless)
 rho = 1.2;                  % density of air at STP (kg/m^3)
 area = .07;                 % area of standing human (m^2) *imprecise*
 mass = 75;                  % weight of person (kg)
-t0 = -.08;                  % trampoline deformation from jump (m)
+t0 = -.4;                  % trampoline deformation from jump (m)
 eff = .87;                  % effectiveness of trampoline (unitless)
 
 % Physical Constants
@@ -18,7 +18,7 @@ g = 9.8;                    % acceleration of gravity (m/s^2)
 init = [0, 0];     % [y, v] 
 
 % Time
-duration = 20;              % simulation length (s)
+duration = 30;              % simulation length (s)
 framerate = 30;             % animation framerate (s^-1)
 timestep = 1/(framerate*10);
 tspan = [0:timestep:duration];
