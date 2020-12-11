@@ -1,4 +1,4 @@
-function [T, M, te, ye] = doubleBounce
+function [T, M, te, ye] = doubleBounce(t0, y0)
 
 % [T,M,te,ye] = doubleBounce(); clf; hold on; plot(T,M(:,1)); plot(te, ye(:,1));
 
@@ -8,14 +8,14 @@ cd = 1.2;                   % coefficient of drag (unitless)
 rho = 1.2;                  % density of air at STP (kg/m^3)
 area = .07;                 % area of standing human (m^2) *imprecise*
 mass = 75;                  % weight of person (kg)
-t0 = -.4;                  % trampoline deformation from jump (m)
+%t0 = -.4;                  % trampoline deformation from jump (m)
 eff = .87;                  % effectiveness of trampoline (unitless)
 
 % Physical Constants
 g = 9.8;                    % acceleration of gravity (m/s^2)
 
 % Initial conditions
-init = [0, 0];     % [y, v] 
+init = [y0, 0];             % [y, v] 
 
 % Time
 duration = 30;              % simulation length (s)
